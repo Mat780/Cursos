@@ -1,0 +1,1 @@
+Primeiramente extraia os arquivos antes de inicializar

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Document</title>
+</head>
+<body>
+    <form method="POST" action="/form">
+        <input type="email" name="email" id="email" placeholder="Email" value="<%= email %>">
+        <%= emailError %><br>
+        <input type="text" name="name" id="name" placeholder="Nome" value="<%= name %>">
+        <%= nameError %><br>
+        <input type="number" name="pontos" id="pontos" placeholder="Pontos" value="<%= pontos %>">
+        <%= pontosError %><br>
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>
