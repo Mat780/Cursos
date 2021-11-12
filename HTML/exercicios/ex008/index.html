@@ -4,36 +4,39 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
+	<title>Outras formatações</title>
 </head>
 <body>
-	<h1>Principais formatações</h1>
-	<h2>Negrito / Destaque</h2>
-	<p>Nessa parte temos um <b>termo em negrito</b> usando a tag &lt;b&gt;(não semantico / sem um sentido)</p>
-	<p>Nesta frase, tenho um <strong>termo em destaque</strong> usando a tag &lt;strong&gt; (semantico / com um sentido) </p>
+	<h1>Outras formatações</h1>
+	<h2>Código fonte / Pré-formatado</h2>
+	<p>O comando <code>document.getElementById('teste')</code> é escrito em linguagem JavaScript.</p>
 
-	<h2>Itálico / Enfase</h2>
-	<p>Nesta frase, temos um <i>termo em itálico</i> usando a tag &lt;i&gt; (não semantico / sem um sentido)</p>
-	<p>Nesta frase, temos um <em>termo em ênfase</em> usando a tag &lt;em&gt; (semantica / com um sentido)</p>
+	<pre> <!-- Codigo pré-formatado -->
+		<code> <!-- Codigo em Python -->
+	num = int(input('Digite um numero'))
+	if num % 2 == 0:
+		print(f'O número {num} é par')
+	else:
+		print(f'O número {num} é ímpar')
+	print('Fim do programa')
+		</code>
+	</pre>
 
-	<h2>Texto marcado</h2> <!-- Mark só muda de cor com o CSS -->
-	<p>Podemos criar também <mark>um texto marcado</mark> usando a tag &lt;mark&gt;</p>
-	<p>Podemos mudar a cor também com o style na tag &lt;mark&gt; deste jeito: <mark style="background-color: lime">um texto marcado</mark></p>
+	<h2>Citações</h2> 
+	<p>Como diria o pai de um amigo: <q>O computador é um burro muito rápido</q></p>
+	<p>Essa tag &lt;q&gt; é usada para citações</p>
 
-	<h2>Texto grande e pequeno</h2> <!-- Letras pequenas há sentido, letras pequenas do contrato por exemplo, agora letras grandes não tem um sentido por isso big entrou em desuso -->
-	<p>Estamos criando um <big>texto grande</big> e um <small>texto pequeno</small></p> <!--Não é bom usar big, pois está obsoleto, small sem problema-->
+	<h2>Citações completas</h2>
+	<p>Segundo Jeff Nobel, no seu livro HTML para leigos:</p>
+	<blockquote cite="https://www.amazon.com.br/HTML-XHTML-CSS-para-leigos/dp/8576086972/ref=sr_1_1?adgrpid=83858041809&gclid=CjwKCAiAvriMBhAuEiwA8Cs5la_NxfIPdmyikfg1finwSNoaGPeBcMyQEdt554wZeo08C2rMhAQlVRoCjOcQAvD_BwE&hvadid=425982568735&hvdev=c&hvlocphy=1001593&hvnetw=g&hvqmt=e&hvrand=12723147592724688916&hvtargid=kwd-631960683830&hydadcr=5626_11235141&keywords=html+para+leigos&qid=1636736464&sr=8-1&ufe=app_do%3Aamzn1.fos.6d798eae-cadf-45de-946a-f477d47705b9">
+		A diferença entre elementos inline e um bloco de texto é importante. Os elementos HTML neste capitulo descrevem os blocos de texto.
+	</blockquote>
 
-	<h2>Texto deletado</h2>
-	<p>Podemos marcar <del>um texto excluido</del> para indicar que ele deve ser lido, no entanto não deve ser considerado</p>
+	<h2>Abreviações</h2>
+	<p>Estou estudando <abbr title="HyperText Markup Language">HTML</abbr> e <abbr title="Cascanding style sheets">CSS</abbr>. Estou adorando tudo isso!</p>
 
-	<h2>Texto inserido</h2>
-	<p>Podemos marcar <ins>um texto inserido</ins> para dar uma ênfase e indicar que ele foi adicionado depois</p>
-	<p>Poderiamos também usar a tag &lt;u&gt;, porém ela está em desuso já que não é semantica, exemplo: <u>um texto com ênfase</u></p>
+	<h2>Texto invertido</h2> <!-- Right to Left OU Left to Right -->
+	<p><bdo dir="rtl">Estou aprendendo a criar coisas em HTML</bdo></p>
 
-	<h2>Texto sobrescrito</h2> <!-- Sup significa que ele vai para cima-->
-	<p>Para inserir coisas do tipo x<sup>20</sup>+3</p>
-
-	<h2>Texto subscrito</h2> <!-- Sub significa que ele vai para baixo-->
-	<p>Para inserir coisas do tipo H<sub>2</sub>0</p>
 </body>
 </html>
