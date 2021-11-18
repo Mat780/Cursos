@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Desafio 2º</title>
+	<link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+</head>
+<body>
+	<h1>Desafio das imagens</h1>
+	<p>Inserir imagens em HTML é muito simples, tanto no conteúdo quanto lá em cima, como ícone de favoritos!</p>
+
+	
+	<picture>
+		<source media="(min-width: 1250px)" srcset="img/github-gg.png" type="image/png">
+		<source media="(min-width: 850px)" srcset="img/github-g.png" type="image/png">
+		<source media="(min-width: 650px)" srcset="img/github-m.png" type="image/png">
+		<source media="(min-width: 450px)" srcset="img/github-p.png" type="image/png">
+
+		<img src="img/github-pp.png" alt="Imagem do github">
+	</picture>
+</body>
+</html>
