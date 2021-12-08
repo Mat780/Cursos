@@ -1,0 +1,1 @@
+Extraia os arquivos em public
