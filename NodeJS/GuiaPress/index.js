@@ -11,6 +11,10 @@ const Article = require('./JS/articles/Article');
 const Category = require('./JS/categories/Category');
 const User = require('./JS/users/User');
 
+const favicon = require('serve-favicon');
+
+app.use(favicon(__dirname + '/public/fav-icon.png'));
+
 // View engine
 app.set('view engine', 'ejs');
 
