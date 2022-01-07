@@ -2,12 +2,13 @@ const express = require('express');
 const router = express.Router();
 const Category = require('./Category');
 const slugify = require('slugify');
+const admAuth = require('../middlewares/admAuth');
 
-router.get("/adm/categories/new" , (req, res) => {
+router.get("/adm/categories/new" , admAuth , (req, res) => {
 	res.render('adm/categories/new');
 });
 
-router.get("/adm/categories", (req, res) => {
+router.get("/adm/categories", admAuth , (req, res) => {
 
 	Category.findAll().then( categories => {
 		res.render('adm/categories/index', {categories: categories})
@@ -15,7 +16,7 @@ router.get("/adm/categories", (req, res) => {
 	
 });
 
-router.get("/adm/categories/edit/:id", (req, res) => {
+router.get("/adm/categories/edit/:id", admAuth , (req, res) => {
 	const id = req.params.id
 
 	if(isNaN(id)){
@@ -37,7 +38,7 @@ router.get("/adm/categories/edit/:id", (req, res) => {
 	})
 });
 
-router.post("/categories/save", (req, res) => {
+router.post("/categories/save", admAuth , (req, res) => {
 	const title = req.body.title;
 
 	if (title != undefined) {
@@ -55,7 +56,7 @@ router.post("/categories/save", (req, res) => {
 
 });
 
-router.post("/categories/delete", (req, res) => {
+router.post("/categories/delete", admAuth , (req, res) => {
 	const id = req.body.id;
 	
 	if(id != undefined){
@@ -79,7 +80,7 @@ router.post("/categories/delete", (req, res) => {
 	}
 })
 
-router.post("/categories/update", (req, res) => {
+router.post("/categories/update", admAuth , (req, res) => {
 	const id = req.body.id;
 	const title = req.body.title;
 

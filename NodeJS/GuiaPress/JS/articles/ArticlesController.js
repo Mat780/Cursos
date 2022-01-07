@@ -3,8 +3,9 @@ const router = express.Router();
 const Category = require('../categories/Category');
 const Article = require('./Article');
 const slugify = require('slugify');
+const admAuth = require('../middlewares/admAuth');
 
-router.get("/adm/articles", (req, res) => {
+router.get("/adm/articles", admAuth , (req, res) => {
 	Article.findAll({
 		include: [{model: Category}]
 	}).then( articles => {
@@ -12,14 +13,14 @@ router.get("/adm/articles", (req, res) => {
 	});
 });
 
-router.get("/adm/articles/new" , (req, res) => {
+router.get("/adm/articles/new", admAuth , (req, res) => {
 	Category.findAll().then( categories => {
-		res.render("adm/articles/new", {categories: categories} );
+		res.render("adm/articles/new", { categories: categories } );
 	});
 
 });
 
-router.get("/adm/articles/edit/:id", (req, res) => {
+router.get("/adm/articles/edit/:id", admAuth ,(req, res) => {
 	const id = req.params.id
 	
 
@@ -84,7 +85,7 @@ router.get("/articles/page/:num", (req, res) => {
 })
 
 
-router.post("/adm/articles/update", (req, res) => {
+router.post("/adm/articles/update", admAuth , (req, res) => {
 	const id = req.body.id;
 	const title = req.body.title;
 	const body = req.body.body;
@@ -105,7 +106,7 @@ router.post("/adm/articles/update", (req, res) => {
 
 })
 
-router.post("/articles/save", (req, res) => {
+router.post("/articles/save", admAuth , (req, res) => {
 	const title = req.body.title;
 	const body = req.body.body;
 	const category = req.body.category;
@@ -121,7 +122,7 @@ router.post("/articles/save", (req, res) => {
 
 });
 
-router.post("/articles/delete", (req, res) => {
+router.post("/articles/delete", admAuth , (req, res) => {
 	const id = req.body.id;
 	
 	if(id != undefined){

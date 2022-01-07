@@ -2,8 +2,9 @@ const express = require('express');
 const router = express.Router();
 const User = require('./User');
 const bcrypt = require('bcrypt');
+const admAuth = require('../middlewares/admAuth');
 
-router.get("/adm/users", (req, res) => {
+router.get("/adm/users", admAuth , (req, res) => {
 
 	User.findAll().then( users => {
 		res.render("adm/users/index", {users: users});
@@ -11,11 +12,11 @@ router.get("/adm/users", (req, res) => {
 
 })
 
-router.get("/adm/users/new", (req, res) => {
+router.get("/adm/users/new", admAuth , (req, res) => {
 	res.render("adm/users/new")
 })
 
-router.get("/adm/users/edit/:id", (req, res) => {
+router.get("/adm/users/edit/:id", admAuth , (req, res) => {
 	const id = req.params.id;
 
 	if(isNaN(id)){
@@ -36,9 +37,44 @@ router.get("/adm/users/edit/:id", (req, res) => {
 		res.redirect("/adm/users");
 	})
 
+});
+
+router.get("/login", (req, res) => {
+	res.render("adm/users/login");
+});
+
+router.get("/logout", (req, res) => {
+	req.session.user = undefined;
+	res.redirect("/");
 })
 
-router.post("/adm/users/create", (req, res) => {
+router.post("/authenticate", (req, res) => {
+	const email = req.body.email;
+	const password = req.body.password;
+
+	User.findOne({where: {email: email}}).then(user => {
+		if(user != undefined){
+			const correct = bcrypt.compareSync(password, user.password);
+
+			if(correct){
+				req.session.user = {
+					id: user.id,
+					email: user.email
+				}
+
+				res.json(req.session.user);
+			} else {
+				res.redirect("/login");
+			}
+
+		} else {
+			res.redirect("/login");
+		}
+
+	})
+});
+
+router.post("/adm/users/create", admAuth , (req, res) => {
 	const email = req.body.email;
 	let password = req.body.password;
 	
@@ -62,7 +98,7 @@ router.post("/adm/users/create", (req, res) => {
 	});
 });
 
-router.post("/adm/users/update", (req, res) => {
+router.post("/adm/users/update", admAuth , (req, res) => {
 	const email = req.body.email;
 	let password = req.body.password;
 
@@ -76,7 +112,7 @@ router.post("/adm/users/update", (req, res) => {
 	})
 });
 
-router.post("/adm/users/delete", (req, res) => {
+router.post("/adm/users/delete", admAuth , (req, res) => {
 	const id = req.body.id;
 	
 	if(id != undefined){

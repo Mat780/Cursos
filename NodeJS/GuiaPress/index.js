@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require("express-session");
 const connection = require('./JS/database/connection');
 const app = express();
 
@@ -12,6 +13,12 @@ const User = require('./JS/users/User');
 
 // View engine
 app.set('view engine', 'ejs');
+
+// Sessions
+app.use(session({
+	secret: "mInha_NamorAda_É_MT_linda_SocoRRo",
+	cookie: {maxAge: 30000}
+}))
 
 // Static
 app.use(express.static('public'));
@@ -44,8 +51,28 @@ app.get("/", (req, res) => {
 			res.render('index', {articles: articles, categories: categories});
 		})
 
-	})
+	});
 
+});
+
+app.get("/session", (req, res) => {
+	req.session.treinamento = "Formação NodeJS";
+	req.session.ano = 2021;
+	req.session.user = {
+		username: "Matheus",
+		email: "mateusfelipe10@live.com",
+		id: 1
+	};
+
+	res.send("Sessão gerada");
+});
+
+app.get("/reading", (req, res) => {
+	res.json({
+		treinamento: req.session.treinamento,
+		ano: req.session.ano,
+		user: req.session.user
+	});
 });
 
 app.get("/:slug", (req, res) => {
@@ -61,8 +88,8 @@ app.get("/:slug", (req, res) => {
 		}
 	}).catch(err => {
 		res.redirect('/');
-	})
-})
+	});
+});
 
 app.get('/category/:slug', (req, res) => {
 	const slug = req.params.slug;
@@ -84,8 +111,8 @@ app.get('/category/:slug', (req, res) => {
 
 	}).catch(err => {
 		res.redirect('/');
-	})
-})
+	});
+});
 
 app.listen(8080, () => {
 	console.log("O servidor está rodando");
