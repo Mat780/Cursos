@@ -1,0 +1,1 @@
+Estou fazendo essa pasta existir :v, em resumo ela serve para guardar o que vier do index.ejs
