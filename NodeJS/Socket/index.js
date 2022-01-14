@@ -9,15 +9,10 @@ io.on("connection", (socket) => {
 		console.log("X desconectou " + socket.id);
 	})
 	
-	socket.on("boasvindas", (data) => {
-		console.log('BOAS VINDAS')
-		console.log(data);
-	});
-
-	socket.on("palavra", data => {
-		console.log('PALAVRAS:')
-		socket.emit('resultado', data + " - NodeJS");
-	});
+	socket.on('msg', (data) => {
+		io.emit('showMsg', data); // Servidor para todo mundo
+		// socket.broadcast.emit('') // Envia do seu socket para todo mundo, menos para você mesmo
+	})
 
 });
 
