@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Socket</title>
+</head>
+<body>
+	
+	<h1>Chat do Guia</h1>
+
+	<input type="text" name="" id="palavra" oninput="enviar()">
+	<button onclick="enviar()">Enviar</button>
+	<hr>
+	<p id="resultado"></p>
+
+
+</body>
+<script src="https://cdn.socket.io/4.4.1/socket.io.min.js" integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossorigin="anonymous"></script>
+<script>
+	const socket = io("http://localhost:3000");
+	socket.emit("boasvindas", {name: "Matheus"});
+
+	socket.on("disconnect", () => {
+		console.log("Desconectado");
+	})
+
+	socket.on("resultado", data => {
+		const p = document.getElementById("resultado");
+		p.innerHTML = data;
+
+	});
+
+	function enviar(){
+		const input = document.getElementById("palavra");
+		socket.emit("palavra", input.value);
+	}
+
+</script>
+</html>
